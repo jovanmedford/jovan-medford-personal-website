@@ -27,8 +27,10 @@ export default function Home() {
               <h2 className="text-md mt-1 lg:text-3xl mb-1 font-bold text-primary-300">Software Engineer</h2>
               <span>Building for the challenge and the artistry. </span>
             </div>
-            <div className="mt-4 flex flex-col lg:flex-row lg:mt-3 gap-4">
-              <Button variant='outline'>Resume</Button>
+            <div className="mt-4 flex flex-col lg:flex-row lg:mt-3 gap-4 items-center">
+              <Link href="/resume">
+                <Button variant='outline'>Resume</Button>
+              </Link>
               <Button>Contact</Button>
             </div>
           </div>
