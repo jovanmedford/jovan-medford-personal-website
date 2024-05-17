@@ -1,0 +1,22 @@
+[
+  {
+    "company": "Bluestream Database",
+    "jobTitle": "Software Engineer",
+    "startDate": "2022",
+    "description": "Component content management system based on the DITA standard."
+  },
+  {
+    "company": "Decker Medicine",
+    "jobTitle": "React Developer",
+    "startDate": "2022",
+    "endDate": "2022",
+    "description": "E-Learning system geard towards medical students."
+  },
+  {
+    "company": "SUSU Magazine",
+    "jobTitle": "Frontend Developer",
+    "startDate": "2022",
+    "endDate": "2022",
+    "description": "Financial Magazine with a special focus on credit unions."
+  }
+]
