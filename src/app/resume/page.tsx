@@ -1,8 +1,9 @@
 "use client";
 
 import experience from "./experience.json";
-import { useEffect, useRef, useState, useContext, createContext } from "react";
+import { useEffect, useRef, useState, useContext, MutableRefObject } from "react";
 import { RefsContext } from "./refs-context";
+import { addToRefs } from "../utils";
 import Toc from "./toc";
 
 interface ExperienceItem {
@@ -19,16 +20,8 @@ interface ResumeSectionProps {
   children: React.ReactNode;
 }
 
-const addToRefs = (refs) => {
-  return function (el) {
-    if (el && !refs.current.includes(el)) {
-      refs.current.push(el);
-    }
-  };
-};
-
 let ResumeSection = ({ sectionId, title, children }: ResumeSectionProps) => {
-  const sectionRefs = useContext(RefsContext);
+  const sectionRefs = useContext(RefsContext) as unknown as MutableRefObject<Element[]>;
   return (
     <section
       id={sectionId}
