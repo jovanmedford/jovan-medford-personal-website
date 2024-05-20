@@ -43,7 +43,7 @@ let ResumeSection = ({ sectionId, title, children }: ResumeSectionProps) => {
 
 const options: IntersectionObserverInit = {
   root: null,
-  rootMargin: "-40%",
+  rootMargin: "-40px",
   threshold: 0.1,
 };
 
@@ -61,9 +61,10 @@ let experienceList = experience.map((item: ExperienceItem) => (
 ));
 
 const handleIntersection = (setActiveItem: (arg0: string) => void) => {
-  return function ([entry]: IntersectionObserverEntry[]) {
-    if (entry.isIntersecting) {
-      console.log(entry.target.id)
+  return function (entries: IntersectionObserverEntry[]) {
+    let entry = entries.find((entry) => entry.isIntersecting);
+    if (entry) {
+      console.log(entry.target.id);
       setActiveItem(entry.target.id);
     }
   };
