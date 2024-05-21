@@ -1,9 +1,17 @@
 "use client";
 
 import experience from "./experience.json";
-import { useEffect, useRef, useState, useContext, MutableRefObject } from "react";
+import projects from "./projects.json";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useContext,
+  MutableRefObject,
+} from "react";
 import { RefsContext } from "./refs-context";
 import { addToRefs } from "../utils";
+import { Button } from "@chakra-ui/react";
 import Toc from "./toc";
 
 interface ExperienceItem {
@@ -12,6 +20,15 @@ interface ExperienceItem {
   startDate: string;
   endDate?: string;
   description: string;
+  href?: string;
+}
+
+interface ProjectItem {
+  title: string;
+  description: string;
+  startDate: string;
+  endDate?: string;
+  href?: string
 }
 
 interface ResumeSectionProps {
@@ -21,14 +38,16 @@ interface ResumeSectionProps {
 }
 
 let ResumeSection = ({ sectionId, title, children }: ResumeSectionProps) => {
-  const sectionRefs = useContext(RefsContext) as unknown as MutableRefObject<Element[]>;
+  const sectionRefs = useContext(RefsContext) as unknown as MutableRefObject<
+    Element[]
+  >;
   return (
     <section
       id={sectionId}
       ref={addToRefs(sectionRefs)}
-      className="min-h-96 mb-40"
+      className="mb-16 md:min-h-96 md:mb-40"
     >
-      <h2 className="text-xl font-bold mb-8">{title}</h2>
+      <h2 className="text-3xl font-bold mb-2 md:mb-8">{title}</h2>
       {children}
     </section>
   );
@@ -43,13 +62,28 @@ const options: IntersectionObserverInit = {
 let experienceList = experience.map((item: ExperienceItem) => (
   <li
     key={item.company}
-    className="bg-gradient-to-r from-primary-500 to-primary-300 py-4 px-8 rounded-md mb-8"
+    className="-ml-4 hover:bg-gradient-to-r from-primary-500 to-primary-300 py-4 px-4 rounded-md mb-8 md:flex"
   >
-    <div className="flex gap-2">
-      <h3 className="font-bold mb-2">{item.company}</h3>
-      <span className="opacity-60">{item.jobTitle}</span>
+    <div className="justify-self-center min-w-36">
+      <span className="pr-4">{item.startDate} - {item.endDate ? item.endDate : "PRESENT"}</span>
     </div>
-    <p>{item.description}</p>
+    <div>
+      <div className="flex gap-2">
+        <h3 className="font-bold mb-2">{item.jobTitle} | </h3>
+        <span>{item.company}</span>
+      </div>
+      <p>{item.description}</p>
+    </div>
+  </li>
+));
+
+let projectList = projects.map((project: ProjectItem) => (
+  <li key={project.title} className="mb-8">
+    <div className="flex gap-2">
+    <h3 className="font-bold mb-2">{project.title}</h3>
+    <span>({project.startDate} - {project.endDate ? project.endDate : "PRESENT"})</span>
+    </div>
+    <p>{project.description}</p>
   </li>
 ));
 
@@ -84,6 +118,7 @@ export default function Resume() {
             <h1 className="text-2xl mb-8 font-bold uppercase">Resume</h1>
             <nav>
               <Toc activeItem={activeItem}></Toc>
+              <Button className="mt-20">Download PDF</Button>
             </nav>
           </div>
           <div className="col-start-1 md:col-start-4 md:col-end-12 mt-16">
@@ -100,6 +135,15 @@ export default function Resume() {
               </ResumeSection>
               <ResumeSection title="Experience" sectionId="work-experience">
                 <ul>{experienceList}</ul>
+              </ResumeSection>
+              <ResumeSection title="Projects" sectionId="projects">
+                <ul>{projectList}</ul>
+              </ResumeSection>
+              <ResumeSection title="Education" sectionId="education">
+                <ul>
+                  <li>MSc Computer Science, Georgia Institute of Technology (2021-2023)</li>
+                  <li>BSc Mathematical Finance, University of Waterloo (2016-2020)</li>
+                </ul>
               </ResumeSection>
             </RefsContext.Provider>
           </div>

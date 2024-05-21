@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Caribbean Scholar",
+    "description": "Online school intended for students taking the Caribbean Secondary Education Certificate (CSEC) exams. Built blog and marketing pages using gatsby with Wordpress backend. Used thinkific as Learning Management System.",
+    "startDate": "2020",
+    "endDate": "2021",
+    "href": "https://www.thecaribbeanscholar.com/"
+  },
+  {
+    "title": "Joey Games",
+    "description": "Simple web application allowing users to play a simple memory game. Building using Next.js, Nest.js and Socket.io.",
+    "startDate": "2024"
+  }
+]
