@@ -7,8 +7,9 @@ export default function Home() {
     <>
       <nav><Link href="Home">Home</Link></nav>
       <main className="inset-0 absolute bg-primary-200 h-screen lg:grid lg:grid-cols-12">
-        <section className="mt-14 max-w-72 bg-light mx-auto py-12 px-10 flex flex-col items-center
-                          rounded-sm drop-shadow-2xl
+        <section style={{boxShadow: "-50px 60px 9px -10px rgba(0,0,0,0.10)"}} className="mt-14 max-w-72 bg-light mx-auto py-12 px-10 flex flex-col items-center
+                          rounded-sm
+                          lg:-mt-16 lg:self-center
                           lg:col-start-3 lg:col-end-11 lg:w-full lg:py-12
                           2xl:lg:col-start-4  2xl:lg:col-end-10
                           lg:h-fit lg:max-w-full lg:grid lg:grid-cols-8 lg:grid-rows-1
