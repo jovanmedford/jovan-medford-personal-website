@@ -45,7 +45,7 @@ let ResumeSection = ({ sectionId, title, children }: ResumeSectionProps) => {
     <section
       id={sectionId}
       ref={addToRefs(sectionRefs)}
-      className="mb-16 md:min-h-96 md:mb-40"
+      className="mb-16 md:min-h-96 md:mb-40 lg:min-h-screen"
     >
       <h2 className="text-3xl font-bold mb-2 md:mb-8">{title}</h2>
       {children}
@@ -55,7 +55,7 @@ let ResumeSection = ({ sectionId, title, children }: ResumeSectionProps) => {
 
 const options: IntersectionObserverInit = {
   root: null,
-  rootMargin: "-40px",
+  rootMargin: "-30%",
   threshold: 0.1,
 };
 
