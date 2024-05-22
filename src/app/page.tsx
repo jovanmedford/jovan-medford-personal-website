@@ -29,9 +29,8 @@ export default function Home() {
             </div>
             <div className="mt-4 flex flex-col lg:flex-row lg:mt-3 gap-4 items-center">
               <Link href="/resume">
-                <Button variant='outline'>Resume</Button>
+                <Button>View Resume</Button>
               </Link>
-              <Button>Contact</Button>
             </div>
           </div>
         </section>

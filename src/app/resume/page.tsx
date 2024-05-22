@@ -124,7 +124,7 @@ export default function Resume() {
             <h1 className="text-2xl mb-8 font-bold uppercase">Resume</h1>
             <nav>
               <Toc activeItem={activeItem}></Toc>
-              <Button className="mt-20">Download PDF</Button>
+              {/* <Button className="mt-20">Download PDF</Button> */}
             </nav>
           </div>
           <div className="col-start-1 md:col-start-4 md:col-end-12 mt-16 md:mt-40">
