@@ -1,41 +1,37 @@
-import Image from "next/image";
-import { Button } from "@chakra-ui/react";
 import Link from "next/link";
+import Header from "./header";
 
 export default function Home() {
   return (
     <>
-      <nav><Link href="Home">Home</Link></nav>
-      <main className="inset-0 absolute bg-primary-200 h-screen lg:grid lg:grid-cols-12">
-        <section style={{boxShadow: "-50px 60px 9px -10px rgba(0,0,0,0.10)"}} className="mt-14 max-w-72 bg-light mx-auto py-12 px-10 flex flex-col items-center
-                          rounded-sm
-                          lg:-mt-16 lg:self-center
-                          lg:col-start-3 lg:col-end-11 lg:w-full lg:py-12
-                          2xl:lg:col-start-4  2xl:lg:col-end-10
-                          lg:h-fit lg:max-w-full lg:grid lg:grid-cols-8 lg:grid-rows-1
-                          ">
-          <div className="flex justify-center relative max-w-28 lg:col-start-6 lg:col-end-8 lg:max-w-40">
-            <Image
-              alt="Jovan Medford portrait"
-              width={350}
-              height={350}
-              src="/jovan-portrait.png"></Image>
-            <div className="h-5/6 absolute -z-10 top-1/3 left-1/3 bg-primary-200 opacity-35 aspect-square"></div>
-          </div>
-          <div className="mt-10 lg:mt-0 lg:col-start-1 lg:col-end-5 lg:row-start-1">
-            <div className="text-center lg:text-left">
-              <h1 className="text-2xl lg:text-5xl font-bold">Jovan Medford</h1>
-              <h2 className="text-md mt-1 lg:text-3xl mb-1 font-bold text-primary-300">Software Engineer</h2>
-              <span>Building for the challenge and the artistry. </span>
+      <main className="inset-0 absolute bg-light h-screen pt-12 px-8">
+        <Header />
+        <section className="mt-14 mx-auto  flex flex-col md:grid md:grid-cols-12">
+          <div
+            className="mt-10 md:col-start-3 md:col-end-11
+                          2xl:lg:col-start-4  2xl:lg:col-end-10"
+          >
+            <div className="lg:text-left">
+              <h1 className="text-2xl lg:text-5xl font-bold">
+                Hey, I'm Jovan Medford
+              </h1>
+              <h2 className="text-lg mt-1 lg:text-3xl mb-1">
+                I’m a software engineer based in Toronto.
+              </h2>
             </div>
-            <div className="mt-4 flex flex-col lg:flex-row lg:mt-3 gap-4 items-center">
-              <Link href="/resume">
-                <Button>View Resume</Button>
+            <p className="mt-8 max-w-sm">
+              I write about my journey and things I’ve learned in my{" "}
+              <a className="underline text-primary-300" href="https://medium.com/@jovanmedford">
+                blog
+              </a>
+              . Also, if you’re curious, you can view my{" "}
+              <Link className="underline text-primary-300" href="resume">
+                resume
               </Link>
-            </div>
+              .
+            </p>
           </div>
         </section>
-
       </main>
     </>
   );
