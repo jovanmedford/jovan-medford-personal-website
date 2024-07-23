@@ -11,9 +11,8 @@ import {
 } from "react";
 import { RefsContext } from "./refs-context";
 import { addToRefs } from "../utils";
-import { Button } from "@chakra-ui/react";
 import Toc from "./toc";
-import Header from "../logo";
+import Header from "../header";
 
 interface ExperienceItem {
   company: string;
@@ -46,9 +45,9 @@ let ResumeSection = ({ sectionId, title, children }: ResumeSectionProps) => {
     <section
       id={sectionId}
       ref={addToRefs(sectionRefs)}
-      className="mb-16 md:min-h-96 md:mb-40 lg:min-h-screen"
+      className="mb-12 md:mb-16 md:min-h-96 lg:mb-40 lg:min-h-screen"
     >
-      <h2 className="text-3xl font-bold mb-2 md:mb-8">{title}</h2>
+      <h2 className="text-2xl md:text-3xl font-bold mb-2 md:mb-8">{title}</h2>
       {children}
     </section>
   );
@@ -63,7 +62,7 @@ const options: IntersectionObserverInit = {
 let experienceList = experience.map((item: ExperienceItem) => (
   <li
     key={item.company}
-    className="-ml-4 hover:bg-gradient-to-r from-primary-500 to-primary-300 py-4 px-4 rounded-md mb-8 md:flex"
+    className="-ml-4 bg-light py-4 px-4 rounded-md mb-8 md:flex"
   >
     <div className="justify-self-center min-w-36">
       <span className="pr-4">
@@ -117,17 +116,17 @@ export default function Resume() {
 
   return (
     <>
-      <main className="py-8 bg-gradient-to-r from-primary-700 to-primary-500 text-light">
-        <div className="grid grid-cols-1 md:grid-cols-12 mt-8 mx-8">
+      <main className="py-8 px-8 bg-light">
+        <Header />
+        <div className="grid grid-cols-1 md:grid-cols-12 lg:mt-16">
           <div className="hidden md:block md:sticky md:top-16 md:self-start col-start-1 col-end-3">
-            <Header></Header>
             <h1 className="text-2xl mb-8 font-bold uppercase">Resume</h1>
             <nav>
               <Toc activeItem={activeItem}></Toc>
               {/* <Button className="mt-20">Download PDF</Button> */}
             </nav>
           </div>
-          <div className="col-start-1 md:col-start-4 md:col-end-12 mt-16 md:mt-40">
+          <div className="mt-8 col-start-1 md:col-start-4 md:col-end-12 lg:mt-16">
             <RefsContext.Provider value={sectionRefs}>
               <ResumeSection title="Skills" sectionId="skills">
                 <p className="mb-4">

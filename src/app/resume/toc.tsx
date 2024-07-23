@@ -11,7 +11,7 @@ interface TocItemProps extends TocItem {
 }
 
 let TocItem = ({ text, href, isActive }: TocItemProps) => (
-  <li key={href} className="pb-4" style={{ opacity: isActive ? "100%" : "50%" }}>
+  <li key={href} className="pb-4" style={{ fontWeight: isActive ? "bold" : "normal" }}>
     <Link href={`#${href}`}>{text}</Link>
   </li>
 );
@@ -22,7 +22,7 @@ let TocItem = ({ text, href, isActive }: TocItemProps) => (
  */
 export default function Toc({ activeItem }: { activeItem: string }) {
   return (
-    <ul className="border-r-2 border-primary-200">
+    <ul className="border-r-2 opacity-100">
       {toc.map((item: TocItem) => (
         <TocItem
           text={item.text}

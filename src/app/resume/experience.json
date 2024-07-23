@@ -1,6 +1,6 @@
 [
   {
-    "company": "Bluestream Database",
+    "company": "Bluestream",
     "jobTitle": "Software Engineer",
     "startDate": "2022",
     "description": "Used Lit to build configuration application frontend from the ground up. Built complex features such as a faceted search page and infinite scrolling publication viewer. Created reusable components with documentation such as a folder tree component. Contributed to REST API design, testing and refactoring."
