@@ -13,6 +13,7 @@ import { RefsContext } from "./refs-context";
 import { addToRefs } from "../utils";
 import Toc from "./toc";
 import Header from "../header";
+import { ExternalLink } from "../_components/external-link";
 
 interface ExperienceItem {
   company: string;
@@ -59,7 +60,7 @@ const options: IntersectionObserverInit = {
   threshold: 0.1,
 };
 
-let experienceList = experience.map((item: ExperienceItem) => (
+const experienceList = experience.map((item: ExperienceItem) => (
   <li
     key={item.company}
     className="-ml-4 bg-light py-4 px-4 rounded-md mb-8 md:flex"
@@ -79,17 +80,25 @@ let experienceList = experience.map((item: ExperienceItem) => (
   </li>
 ));
 
-let projectList = projects.map((project: ProjectItem) => (
-  <li key={project.title} className="mb-8">
-    <div className="flex gap-2">
-      <h3 className="font-bold mb-2">{project.title}</h3>
-      <span>
-        ({project.startDate} - {project.endDate ? project.endDate : "PRESENT"})
-      </span>
-    </div>
-    <p>{project.description}</p>
-  </li>
-));
+const projectList = projects.map((project: ProjectItem) => {
+  return (
+    <li key={project.title} className="mb-8">
+      <div className="flex gap-2">
+        <h3 className="font-bold mb-2">
+          {project.href ? (
+            <ExternalLink href={project.href} showIcon>{project.title}</ExternalLink>
+          ) : (
+            project.title
+          )}
+        </h3>
+        <span>
+          ({project.startDate} - {project.endDate ? project.endDate : "PRESENT"})
+        </span>
+      </div>
+      <p>{project.description}</p>
+    </li>
+  );
+});
 
 const handleIntersection = (setActiveItem: (arg0: string) => void) => {
   return function (entries: IntersectionObserverEntry[]) {
@@ -128,21 +137,11 @@ export default function Resume() {
           </div>
           <div className="mt-8 col-start-1 md:col-start-4 md:col-end-12 lg:mt-16">
             <RefsContext.Provider value={sectionRefs}>
-              <ResumeSection title="Skills" sectionId="skills">
-                <p className="mb-4">
-                  Typescript, Javascript, SQL, Docker, Git, GraphQL, Java,
-                  Python, C
-                </p>
-                <p>
-                  <span className="font-bold">Frameworks:</span>Lit, Nest.js,
-                  Next.js, React{" "}
-                </p>
+              <ResumeSection title="Projects" sectionId="projects">
+                <ul>{projectList}</ul>
               </ResumeSection>
               <ResumeSection title="Experience" sectionId="work-experience">
                 <ul>{experienceList}</ul>
-              </ResumeSection>
-              <ResumeSection title="Projects" sectionId="projects">
-                <ul>{projectList}</ul>
               </ResumeSection>
               <ResumeSection title="Education" sectionId="education">
                 <ul>
@@ -154,6 +153,16 @@ export default function Resume() {
                     BSc Mathematical Finance, University of Waterloo (2016-2020)
                   </li>
                 </ul>
+              </ResumeSection>
+              <ResumeSection title="Skills" sectionId="skills">
+                <p className="mb-4">
+                  Typescript, Javascript, SQL, Docker, Git, GraphQL, Java,
+                  Python, C
+                </p>
+                <p>
+                  <span className="font-bold">Frameworks:</span>Lit, Nest.js,
+                  Next.js, React{" "}
+                </p>
               </ResumeSection>
             </RefsContext.Provider>
           </div>

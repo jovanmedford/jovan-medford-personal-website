@@ -1,18 +1,18 @@
 [
   {
-    "text": "Skills",
-    "href": "skills"
+    "text": "Projects",
+    "href": "projects"
   },
   {
     "text": "Work Experience",
     "href": "work-experience"
   },
   {
-    "text": "Projects",
-    "href": "projects"
-  },
-  {
     "text": "Education",
     "href": "education"
+  },
+  {
+    "text": "Skills",
+    "href": "skills"
   }
 ]

@@ -1,5 +1,12 @@
 [
   {
+    "title": "What Did I Do This Month?",
+    "description": "I wanted to generalize the github heat map to other areas of life. WDIDTM allows me to see at a glance how often I'm showing up for the things that matter. It's the perfect way for me to measure my longterm consistency towards my goals.",
+    "startDate": "2026",
+    "endDate": "2026",
+    "href": "https://whatdididothismonth.com/"
+  },
+  {
     "title": "Caribbean Scholar",
     "description": "Online school intended for students taking the Caribbean Secondary Education Certificate (CSEC) exams. Built blog and marketing pages using gatsby with Wordpress backend. Used thinkific as Learning Management System.",
     "startDate": "2020",
