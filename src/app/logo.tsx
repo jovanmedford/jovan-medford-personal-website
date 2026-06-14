@@ -7,7 +7,7 @@ export default function Logo() {
       <Image
         alt="The letters JM in an origami style."
         width={45}
-        height={45}
+        height={24}
         src="/logo.png"
       ></Image>
     </Link>
