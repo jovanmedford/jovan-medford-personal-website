@@ -11,7 +11,7 @@ interface TocItemProps extends TocItem {
 }
 
 let TocItem = ({ text, href, isActive }: TocItemProps) => (
-  <li key={href} className="pb-4" style={{ fontWeight: isActive ? "bold" : "normal" }}>
+  <li className="pb-4" style={{ fontWeight: isActive ? "bold" : "normal" }}>
     <Link href={`#${href}`}>{text}</Link>
   </li>
 );
