@@ -26,7 +26,7 @@ export default function Home() {
               </a>
               . Also, if you’re curious, you can view my{" "}
               <Link className="underline text-primary-300" href="resume">
-                resume
+                portfolio & resume
               </Link>
               .
             </p>

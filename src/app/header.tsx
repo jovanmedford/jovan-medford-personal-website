@@ -10,7 +10,7 @@ export default function Header() {
       <nav className="flex gap-2">
         <a href="https://medium.com/@jovanmedford">Blog</a>
         <div>|</div>
-        <Link href="resume">Resume</Link>
+        <Link href="resume">Portfolio & Resume</Link>
       </nav>
     </header>
   );
