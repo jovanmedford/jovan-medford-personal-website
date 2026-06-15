@@ -1,15 +1,15 @@
 import Link from "next/link";
 import Header from "./header";
+import { CnTower } from "./_components/cn-tower";
 
 export default function Home() {
   return (
     <>
-      <main className="inset-0 absolute bg-light h-screen pt-12 px-8">
+      <main className="inset-0 absolute bg-light h-screen pt-12 px-8 overflow-hidden">
         <Header />
         <section className="mt-14 mx-auto  flex flex-col md:grid md:grid-cols-12">
           <div
-            className="mt-10 md:col-start-3 md:col-end-11
-                          2xl:lg:col-start-4  2xl:lg:col-end-10"
+            className="mt-10 md:col-start-3 md:col-end-10"
           >
             <div className="lg:text-left">
               <h1 className="text-2xl lg:text-5xl font-bold">
@@ -31,6 +31,7 @@ export default function Home() {
               .
             </p>
           </div>
+          <CnTower className="md:col-span-3 w-fit mx-auto mt-8 md:mx-0 md:mt-0" />
         </section>
       </main>
     </>

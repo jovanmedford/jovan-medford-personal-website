@@ -65,7 +65,7 @@ const experienceList = experience.map((item: ExperienceItem) => (
     key={item.company}
     className="-ml-4 bg-light py-4 px-4 rounded-md mb-8 md:flex"
   >
-    <div className="justify-self-center min-w-36">
+    <div className="min-w-36">
       <span className="pr-4">
         {item.startDate} - {item.endDate ? item.endDate : "PRESENT"}
       </span>
@@ -83,8 +83,8 @@ const experienceList = experience.map((item: ExperienceItem) => (
 const projectList = projects.map((project: ProjectItem) => {
   return (
     <li key={project.title} className="mb-8">
-      <div className="flex gap-2">
-        <h3 className="font-bold mb-2">
+      <div className="flex gap-2 flex-col md:flex-row">
+        <h3 className="font-bold md:mb-2">
           {project.href ? (
             <ExternalLink href={project.href} showIcon>{project.title}</ExternalLink>
           ) : (
