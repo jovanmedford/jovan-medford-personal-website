@@ -9,7 +9,7 @@ const kumbh = Kumbh_Sans({ subsets: ["latin"] });
 const gaId = process.env.GA_ID;
 
 export const metadata: Metadata = {
-  title: "Jovan Medford | Software Enginerer",
+  title: "Jovan Medford | Software Engineer",
   description:
     "Portfolio website for Toronto based Software Engineer - Jovan Medford",
 };
