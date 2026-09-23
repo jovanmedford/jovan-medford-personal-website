@@ -12,7 +12,7 @@ const config: Config = {
       'primary-500': '#0034AD',
       'primary-300': '#3D77FF',
       'primary-200': '#72BCFD',
-      'light': '#F8F7FF'
+      'light': '#FBFAFF'
     },
     screens: {
       'sm': '640px',
