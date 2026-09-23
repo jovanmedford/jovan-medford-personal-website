@@ -14,6 +14,8 @@ import { addToRefs } from "../utils";
 import Toc from "./toc";
 import Header from "../header";
 import { ExternalLink } from "../_components/external-link";
+import { Container } from "../_components/container";
+import { ResumeSectionsContainer } from "./sections-container";
 
 interface ExperienceItem {
   company: string;
@@ -46,7 +48,7 @@ let ResumeSection = ({ sectionId, title, children }: ResumeSectionProps) => {
     <section
       id={sectionId}
       ref={addToRefs(sectionRefs)}
-      className="mb-12 md:mb-16 md:min-h-96 lg:mb-40 lg:min-h-screen"
+      className="mb-12 scroll-mt-40 md:mb-16 md:min-h-96 md:scroll-mt-32 lg:mb-40 lg:min-h-screen"
     >
       <h2 className="text-2xl md:text-3xl font-bold mb-2 md:mb-8">{title}</h2>
       {children}
@@ -124,18 +126,17 @@ export default function Resume() {
   }, [sectionRefs]);
 
   return (
-    <>
-      <main className="py-8 px-8 bg-light">
-        <Header />
-        <div className="grid grid-cols-1 md:grid-cols-12 lg:mt-16">
-          <div className="hidden md:block md:sticky md:top-16 md:self-start col-start-1 col-end-3">
-            <h1 className="text-2xl mb-8 font-bold uppercase">Resume</h1>
+    <main className="min-h-screen bg-light pb-8">
+      <Header className="sticky top-0 z-20 bg-light pt-12" />
+      <Container>
+        <div className="grid grid-cols-1 md:mt-14 md:grid-cols-12">
+          <div className="hidden md:block md:sticky md:top-32 md:self-start col-start-1 col-end-3">
             <nav>
               <Toc activeItem={activeItem}></Toc>
               {/* <Button className="mt-20">Download PDF</Button> */}
             </nav>
           </div>
-          <div className="mt-8 col-start-1 md:col-start-4 md:col-end-12 lg:mt-16">
+          <ResumeSectionsContainer>
             <RefsContext.Provider value={sectionRefs}>
               <ResumeSection title="Projects" sectionId="projects">
                 <ul>{projectList}</ul>
@@ -165,9 +166,9 @@ export default function Resume() {
                 </p>
               </ResumeSection>
             </RefsContext.Provider>
-          </div>
+          </ResumeSectionsContainer>
         </div>
-      </main>
-    </>
+      </Container>
+    </main>
   );
 }

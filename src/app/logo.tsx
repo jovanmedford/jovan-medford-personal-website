@@ -3,13 +3,14 @@ import Link from "next/link";
 
 export default function Logo() {
   return (
-    <Link href="/" className="block">
+    <Link href="/" className="block shrink-0" aria-label="Jovan Medford home">
       <Image
         alt="The letters JM in an origami style."
-        width={45}
-        height={24}
+        width={58}
+        height={31}
         src="/logo.png"
-      ></Image>
+        className="h-auto w-[3.625rem] md:w-[2.8125rem]"
+      />
     </Link>
   );
 }

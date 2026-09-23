@@ -5,9 +5,7 @@ import { Container } from "./_components/container";
 export default function Home() {
   return (
     <main className="min-h-screen bg-light">
-      <Container className="pt-12">
-        <Header />
-      </Container>
+      <Header className="pt-12" />
 
       <section aria-labelledby="banner-title">
         <Container className="pb-16 pt-20">
@@ -19,8 +17,7 @@ export default function Home() {
               Jovan Medford
             </h1>
             <p className="mt-3">
-              I’m a software engineer with special interests in Finance and
-              Education.
+              Software engineer building great products and solving hard problems.
             </p>
             <CnTower className="mt-6 h-80 w-auto max-w-full" />
           </div>
