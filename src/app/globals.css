@@ -41,3 +41,55 @@ h6 {
     text-wrap: balance;
   }
 }
+
+@layer components {
+  .article-content {
+    @apply text-[1.0625rem] leading-8 text-black/80;
+  }
+
+  .article-content > * + * {
+    @apply mt-6;
+  }
+
+  .article-content h2 {
+    @apply mt-14 scroll-mt-8 text-3xl font-bold leading-tight text-black;
+  }
+
+  .article-content h3 {
+    @apply mt-10 scroll-mt-8 text-2xl font-bold leading-tight text-black;
+  }
+
+  .article-content a {
+    @apply text-primary-500 underline decoration-primary-300 decoration-2 underline-offset-4 transition-colors hover:text-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500;
+  }
+
+  .article-content strong {
+    @apply font-bold text-black;
+  }
+
+  .article-content ul {
+    @apply list-disc space-y-2 pl-6;
+  }
+
+  .article-content ol {
+    @apply list-decimal space-y-2 pl-6;
+  }
+
+  .article-content blockquote {
+    @apply border-l-4 border-primary-300 pl-6 italic text-black/65;
+  }
+
+  .article-content code {
+    @apply bg-black/5 px-1.5 py-0.5 font-mono text-[0.9em] text-black;
+  }
+
+  .article-content pre {
+    @apply overflow-x-auto bg-primary-700 p-5 text-sm leading-6 text-light;
+  }
+
+  .article-content pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+  }
+}

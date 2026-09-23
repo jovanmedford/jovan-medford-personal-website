@@ -4,7 +4,7 @@ import Logo from "./logo";
 import { Container } from "./_components/container";
 
 const navigation = [
-  { href: "https://medium.com/@jovanmedford", label: "Writing" },
+  { href: "/blog", label: "Writing" },
   { href: "/resume", label: "Work" },
 ];
 
