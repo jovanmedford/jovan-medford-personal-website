@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
-import { Kumbh_Sans } from "next/font/google";
+import { Asap, Inter } from "next/font/google";
 import "./globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-const kumbh = Kumbh_Sans({ subsets: ["latin"] });
+const asap = Asap({
+  subsets: ["latin"],
+  variable: "--font-asap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 const gaId = process.env.GA_ID;
 
@@ -21,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={kumbh.className}>
+      <body className={`${asap.variable} ${inter.variable}`}>
         <ChakraProvider>
           {children}
         </ChakraProvider>
