@@ -46,18 +46,18 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <main className="min-h-screen bg-light text-black">
-      <Header className="pt-12" />
+      <Header className="md:pt-12" />
 
       <Container className="pb-24 md:pt-4">
         <article className="mx-auto max-w-3xl mt-8">
           <header className="mt-4 border-b border-black/15 pb-10">
             <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm text-black/55">
-              <time dateTime={post.publishedAt}>
+              <time className="block" dateTime={post.publishedAt}>
                 Published {formatPostDate(post.publishedAt)}
               </time>
               {post.updatedAt && (
                 <time
-                  className="border-l border-black/20 pl-3"
+                  className="block"
                   dateTime={post.updatedAt}
                 >
                   Updated {formatPostDate(post.updatedAt)}
