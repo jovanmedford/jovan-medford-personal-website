@@ -3,6 +3,7 @@ import { Asap, Inter } from "next/font/google";
 import "./globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Footer from "./footer";
 
 const asap = Asap({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className={`${asap.variable} ${inter.variable}`}>
         <ChakraProvider>
           {children}
+          <Footer />
         </ChakraProvider>
         {gaId && <GoogleAnalytics gaId={gaId} />}
       </body>
