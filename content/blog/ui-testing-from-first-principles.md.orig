@@ -1,0 +1,96 @@
+---
+title: "UI Testing From First Principles"
+description: "A practical look at the layers behind a React component test—and how understanding them makes testing problems easier to solve."
+publishedAt: "2026-09-25"
+tags:
+  - Testing
+  - React
+  - JavaScript
+draft: false
+---
+
+Component tests help us trust that individual pieces of an application work as intended. For that trust to mean something, the test environment has to reproduce the parts of production that those components rely on. Building that environment is where the challenge lies.
+
+I created [UI Testing Setups From First Principles](https://github.com/jovanmedford/ui-testing-explorations) to pull those responsibilities apart and put them back together one layer at a time.
+
+## Test Runner and Assertion Library
+
+The project begins with a pure JavaScript function that adds two values. Node's built-in test runner executes the test, while its assertion library compares the actual result with the one we expected.
+
+These responsibilities are often bundled together, so it is natural to think of them as the same thing. They are not. The runner decides when a test runs and reports its outcome. The assertion decides whether the expectation was met.
+
+This simple example gives us the first two pieces of our test setup without installing a single dependency.
+
+```js
+import { it } from "node:test";
+import assert from "node:assert";
+import simpleAdd from "./simple-add.js";
+
+it("adds two numbers correctly", () => {
+  assert.strictEqual(simpleAdd(1, 2), 3);
+});
+```
+
+## Browser APIs in a Node Test Environment
+
+The next example is a counter that creates DOM elements and responds to button clicks. Node can still run the tests, but it does not provide a DOM by default. For that, we add jsdom and expose its `window` and `document` objects to the application.
+
+Installing jsdom does not turn Node into a browser. It supplies implementations of the browser APIs our code needs, but it does not perform visual layout or paint anything to a screen. This distinction is important. A test environment should reproduce the parts of production that matter for the behaviour under test.
+
+```js
+import assert from "node:assert/strict";
+import { JSDOM } from "jsdom";
+import renderCounter from "../counter.js";
+
+const domEnvironment = new JSDOM();
+globalThis.window = domEnvironment.window;
+globalThis.document = domEnvironment.window.document;
+
+renderCounter(document.body);
+document.querySelector('[aria-label="increment"]').click();
+
+assert.strictEqual(document.getElementById("count").textContent, "1");
+```
+
+## Source Transformation and Module Resolution
+
+Once TypeScript, JSX, and multiple modules enter the picture, the source code may no longer be something the test runner can execute directly. It must first be transformed into JavaScript. The emitted module format and import paths must also follow the rules of the host that will load them.
+
+One example in the project deliberately configures TypeScript as if a bundler will resolve extensionless imports, then asks Node to run the emitted files directly. TypeScript compiles successfully, but Node cannot resolve the imports. The configuration described one environment while the code actually ran in another.
+
+This is the kind of failure that can make a testing tool seem unpredictable. In reality, each tool followed its own rules correctly; the rules simply did not agree.
+
+```ts
+import {
+  hasSpecialCharacter,
+  isRequiredLength,
+} from "./helpers.js";
+
+export default function validatePassword(password: string) {
+  return isRequiredLength(password) && hasSpecialCharacter(password);
+}
+```
+
+The type annotation is removed during compilation, while the `.js` specifier remains so Node can resolve the emitted `helpers.js` file.
+
+## Testing React Components With Jest
+
+The final example tests an accessible React tabs component. Jest runs the tests and assertions. TypeScript transforms the TypeScript and JSX. jsdom supplies DOM APIs. React Testing Library renders the component, queries it by semantic role, and interacts with it as a user would.
+
+None of these tools is the entire test setup. Each one owns a part of the path from source code to a passing test.
+
+```tsx
+const user = userEvent.setup();
+render(<DanishComposersTabs />);
+
+await user.click(screen.getByRole("tab", { name: "Carl Andersen" }));
+
+screen.getByRole("tab", {
+  name: "Carl Andersen",
+  selected: true,
+});
+```
+
+That is the main lesson I took from building the project: configuration becomes less mysterious once you can name the boundaries. A syntax error may point to transformation. A loading error may point to module format or resolution. A missing `document` may point to the test environment. A test that queries implementation details may need a better interaction model.
+
+You do not need to rebuild your testing stack every time you write a component test. Still, taking it apart once makes it much easier to trust—and much easier to fix when it fails.

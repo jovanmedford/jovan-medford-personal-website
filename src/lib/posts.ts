@@ -2,7 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { remark } from "remark";
-import html from "remark-html";
+import remarkRehype from "remark-rehype";
+import rehypeSlug from "rehype-slug";
+import rehypeHighlight from "rehype-highlight";
+import rehypeStringify from "rehype-stringify";
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
@@ -69,7 +72,12 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     return null;
   }
 
-  const renderedContent = await remark().use(html).process(content);
+  const renderedContent = await remark()
+    .use(remarkRehype)
+    .use(rehypeSlug, { prefix: "section-" })
+    .use(rehypeHighlight)
+    .use(rehypeStringify)
+    .process(content);
 
   return {
     slug,

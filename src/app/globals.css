@@ -92,4 +92,39 @@ h6 {
     color: inherit;
     padding: 0;
   }
+
+  .article-content .hljs-comment,
+  .article-content .hljs-quote {
+    color: #9fb0d0;
+    font-style: italic;
+  }
+
+  .article-content .hljs-keyword,
+  .article-content .hljs-literal,
+  .article-content .hljs-selector-tag,
+  .article-content .hljs-type {
+    color: #ffcf70;
+  }
+
+  .article-content .hljs-string,
+  .article-content .hljs-regexp {
+    color: #8ce6c0;
+  }
+
+  .article-content .hljs-title,
+  .article-content .hljs-title.function_,
+  .article-content .hljs-built_in {
+    color: #84c7ff;
+  }
+
+  .article-content .hljs-number,
+  .article-content .hljs-attr,
+  .article-content .hljs-property {
+    color: #e8a7ff;
+  }
+
+  .article-content .hljs-variable,
+  .article-content .hljs-params {
+    color: #fbfaff;
+  }
 }
